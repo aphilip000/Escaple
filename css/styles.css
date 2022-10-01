@@ -1,0 +1,31 @@
+body{
+    max-width: 800px;
+    margin: auto;
+}
+
+.wrapper{
+    background-color: antiquewhite;
+    padding: 1px 2em 2em 2em;
+    margin: 1em;
+    padding-bottom: 500px;
+}
+
+h1{
+    color: rgb(42, 84, 168);
+    margin-bottom: 1em;
+
+}
+
+a{
+    font-size: large;
+    color: rgb(42, 84, 168);
+}
+
+#slide{
+    font-size: xx-large;
+    position: relative;
+    top: 100px;
+    left: 50px;
+    color: rgb(120, 33, 33);
+}
+

@@ -1,0 +1,21 @@
+body{
+    max-width: 800px;
+    margin: auto;
+}
+
+.wrapper{
+    background-color: antiquewhite;
+    padding: 1px 2em 2em 2em;
+    margin: 1em;
+}
+
+h1{
+    color: rgb(42, 84, 168);
+    margin-bottom: 1em;
+
+}
+
+a{
+    font-size: large;
+    color: rgb(42, 84, 168);
+}
