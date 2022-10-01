@@ -4,6 +4,8 @@
 
 **Project:Escaple**
 
+*Our project is based loosely off of a fusion of the popular game wordle and escaping, hence the name escaple*
+
 *Team: Keith, Keagan, Akash, Tarandeep*
 
 - Akash as Team Coordinator
