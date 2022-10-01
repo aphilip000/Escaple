@@ -1,4 +1,4 @@
-#H1 CPSC 2350 Project
+# CPSC 2350 Project
 
 *Author: Keith Cheng*
 
