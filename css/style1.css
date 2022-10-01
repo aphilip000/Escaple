@@ -1,0 +1,14 @@
+#wrapper{
+    color: white;
+    background-color: green;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+    font-weight: bold;
+}
+a:hover{
+    color: blue;
+}

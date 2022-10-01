@@ -1,0 +1,14 @@
+#wrapper{
+     background-color: brown;
+     color: rgb(238, 231, 231);
+}
+
+a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: xx-large;
+}
+
+a:hover{
+    color: blue;
+}
