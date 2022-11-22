@@ -1,11 +1,36 @@
 
-
+/* Utility classes */
 .flex-container {
     display: flex;
 }
 .justify-center {
     justify-content: center;
     align-items: center;
+}
+.flex-down {
+    flex-direction: column;
+}
+
+/* 
+    Temporary stuff
+    Pls make this nicer
+    We might want to use actual images instead of emojis
+ */
+table {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+td {
+    --dimensions: calc(2rem + 2px);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: var(--dimensions);
+    height: var(--dimensions);
+    border: 2px rgba(0, 0, 0, 0.25) dotted;
 }
 
 .main {
@@ -24,4 +49,12 @@
     left: 25%;
     transform: rotate(0deg);
     transform-origin: center right;
+}
+
+.select-bar {
+    border: 1px solid black;
+}
+
+.select-bar > * {
+    padding: 0.5em;
 }
