@@ -1,3 +1,7 @@
+:root {
+    font-size: 32px;
+    --character-offset: -0.15em;
+}
 
 /* Utility classes */
 .flex-container {
@@ -16,12 +20,18 @@
     Pls make this nicer
     We might want to use actual images instead of emojis
  */
-table {
+
+
+#game > * {
+    padding: 1rem;
+}
+
+table, #movesList {
     padding: 5px;
     border: 1px solid black;
 }
 
-td {
+#puzzle tr td {
     --dimensions: calc(2rem + 2px);
     box-sizing: border-box;
     display: flex;
@@ -33,11 +43,27 @@ td {
     border: 2px rgba(0, 0, 0, 0.25) dotted;
 }
 
-.main {
-    max-width: 1400px;
-    flex-direction: column;
+/* #movesList {
+    width: 150%;
+    aspect-ratio: 8 / 1;
+} */
+
+.move {
+    font-size: 2rem;
 }
-.animation-container {
+
+.move {
+    cursor: pointer;
+}
+
+.move:active {
+    cursor: pointer;
+}
+
+.main {
+    width: 100%;
+}
+/* .animation-container {
     width: 50%;
     height: 50%;
     padding: 25% 25% 15%;
@@ -49,7 +75,7 @@ td {
     left: 25%;
     transform: rotate(0deg);
     transform-origin: center right;
-}
+} */
 
 .select-bar {
     border: 1px solid black;
@@ -57,4 +83,27 @@ td {
 
 .select-bar > * {
     padding: 0.5em;
+}
+
+/* .puzzle-data {
+} */
+
+/* Styles for the player */
+.charLocation::after {
+    position: absolute;
+    transform: rotate(0deg);
+    content: '🙂';
+}
+
+.rotate0::after {
+    transform: rotate(0deg);
+}
+.rotate1::after {
+    transform:  rotate(90deg) translate(3.9px, -0.1rem);
+}
+.rotate2::after {
+    transform:  rotate(180deg) translate(0.7px, -0.25rem);
+}
+.rotate3::after {
+    transform:  rotate(270deg) translate(-3.9px, -4.5px);
 }

@@ -2,33 +2,42 @@
 const TILES = ['⬜', '🟦', '🟢', '⚫']
 const UNKNOWN = '❔'
 const PLAYER = '🙂'
-const MOVES = ['⬜', '🔼', '⏫', '⬅️', '➡️', '🔄']
-// probably terrible practice but having 25 falses takes a lot of space
-const f = false
-const t = true
+const MOVES = ['🔼', '⬅️', '➡️', '🔄'] // '⏫', 
+const ROWS = 5
+const COLS = 5
+
+const NUM_MOVES = 6
 
 
-let puzzle = document.getElementById("puzzle")
+
+
 class GameBoard {
+    known
+    tiles
+    pos
+    dir
     constructor() {
-        this.known = [ // keeps track of known tiles
-            [f, f, f, f, f],
-            [f, f, f, f, f],
-            [f, f, f, f, f],
-            [f, f, f, f, f],
-            [f, f, f, f, f]
-        ]
-        this.tiles = [ // tracks the actual board
-            ['⬜','⬜','⬜','⬜','⬜'],
+        // tracks the tiles the player has revealed
+        this.known = Array(ROWS)
+        for (let y = 0; y < ROWS; y++) {
+            this.known[y] = Array(COLS)
+            for (let x = 0; x < COLS; x++) this.known[y][x] = false
+        }
+        // tracks the actual board
+        this.tiles = [ 
+            ['🟢','⬜','⬜','⬜','⬜'],
             ['⬜','🟦','⬜','⬜','⬜'],
             ['⬜','🟦','⚫','⬜','⬜'],
             ['⬜','🟦','🟦','🟦','⬜'],
-            ['🟢','⬜','⬜','⬜','⬜'] 
+            ['⬜','⬜','⬜','⬜','⬜'] 
         ]
-        this.x = 0
-        this.y = 4
-        this.dir = 0 // direction character is facing
-        this.revealADJ(this.x, this.y)
+        // the character's position
+        this.pos = {x:0, y:0}
+        // direction character is facing
+        // 0 is north, 1 is east, etc.
+        this.dir = 0 
+        this.revealADJ(this.pos)
+        this.revealLine(this.pos, GameBoard.add(2, this.dir, this.pos))
     }
     // TODO: 
     // GameBoard(filename) { 
@@ -36,72 +45,122 @@ class GameBoard {
     // }
     display() {
         let output = ""
-        for (let y = 0; y < 5; y++) {
+        for (let y = 0; y < ROWS; y++) {
             output += `<tr class="puzzle-row flex-container">`
-            for (let x = 0; x < 5; x++) output += `<td class="puzzle-data${(this.x == x && this.y == y)? " player direction=" + this.dir : ""}">${(this.x == x && this.y == y) ? PLAYER : (this.known[y][x] === true) ? this.tiles[y][x] : UNKNOWN}</td>`
+            // checks if the player is on this tile and adds classes so the browser displays the character
+            for (let x = 0; x < COLS; x++) output += `<td class="puzzle-data${(this.pos.x == x && this.pos.y == y)? " charLocation rotate" + this.dir : ""}">${(this.known[y][x] === true) ? this.tiles[y][x] : UNKNOWN}</td>`
             output += `</tr>`
         }
         // this.tiles.forEach(element => {output += `<div>${element}</div>`})
         puzzle.innerHTML = output
     }
     revealBoard() {
-        this.known = [ // keeps track of known tiles
-            [t, t, t, t, t],
-            [t, t, t, t, t],
-            [t, t, t, t, t],
-            [t, t, t, t, t],
-            [t, t, t, t, t]
-        ]
+        for (let y = 0; y < COLS; y++) {
+            for (let x = 0; x < ROWS; x++) this.known[y][x] = true
+        }
+        this.display()
+    }
+    hideBoard() {
+        for (let y = 0; y < COLS; y++) {
+            for (let x = 0; x < ROWS; x++) this.known[y][x] = false
+        }
         this.display()
     }
     // reveal a single tile
-    reveal(x, y) {
-        this.known[y][x] = t
+    reveal(pos) {
+        if (pos.x >= 0 && pos.x < COLS && pos.y < ROWS && pos.y >= 0)
+            this.known[pos.y][pos.x] = true
     }
     // reveal a horizontal line of tiles
     // assumes points share a coordinate
-    revealLine(x1, y1, x2, y2) {
-        if (x1 === x2) {
-            for (let y = y1; y <= y2; y++) {
-                this.revealADJ(x1, y)
+    revealLine(pos1, pos2) {
+        this.hideBoard()
+        // x is same
+        if (pos1.x === pos2.x) {
+            for (let y = pos1.y; y <= pos2.y; y++) {
+                this.reveal({x:pos1.x, y:y})
             }
-        } else {
-            for (let x = x1; x <= x2; x++) {
-                this.revealADJ(x, y1)
+        } 
+        // y is same
+        else {
+            for (let x = pos1.x; x <= pos2.x; x++) {
+                this.reveal({x:x, y:pos1.y})
             }
         }
     }
     // reveal all 5 tiles on and adjacent to this
-    revealADJ(x, y) {
-        for (let i = y-1; i < y+2; i++) {
-            if (i >= 0 && i <= 4) { // check if within bounds
-                for (let j = x-1; j < x+2; j++) {
-                    if (j >= 0 && j <= 4)
-                        this.known[i][j] = t
-                }
+    revealADJ(pos) {
+        let x = pos.x
+        let y = pos.y
+        this.reveal({x:x, y:y})
+        this.reveal({x:x+1, y:y})
+        this.reveal({x:x-1, y:y})
+        this.reveal({x:x, y:y+1})
+        this.reveal({x:x, y:y-1})
+    }
+    executeMoves(moves) {
+        for (let i = 0; i < moves.length; i++) {
+            switch (moves[i]) {
+                case MOVES[0]: this.advance(); break
+                case MOVES[1]: this.turn(-1); break
+                case MOVES[2]: this.turn(1); break
+                case MOVES[3]: this.turn(2); break
             }
         }
     }
-    executeMoves(moves) {
-        const MOVES_FUNC = [ , this.revealADJ, ]
-        for (let i = 0; i < moves.length; i++) {
 
+
+    // add magnitude m in direction dir to position
+    // add(m:number, dir:number, pos:{x, y}): {x, y}
+    static add(m, dir, pos) {
+        console.log(m, dir, pos)
+        switch (dir) {
+            case 0: return {x:pos.x, y:pos.y - m}
+            case 1: return {x:pos.x + m, y:pos.y}
+            case 2: return {x:pos.x, y:pos.y + m}
+            case 3: return {x:pos.x - m, y:pos.y}
         }
     }
-    mONE() {
-        
+    // check if this position is within the bounds of the board
+    inBounds(pos) {
+        return pos.x >= 0 && pos.x < COLS && pos.y >= 0 && pos.y < ROWS
+    }
+    // advance the character's position by 1
+    advance() {
+        let newPos = GameBoard.add(1, this.dir, this.pos)
+        // move the character if possible
+        if (this.inBounds(newPos) && this.tiles[newPos.y][newPos.x] != '🟦') this.pos = newPos
+        // reveal 2 tiles ahead
+        this.reveal(GameBoard.add(2, this.dir, {x:this.pos.x, y:this.pos.y}))
+        this.display()
+    }
+    debug() {
+        console.log(`pos: ${this.pos}\ndir: ${this.dir}`)
+    }
+    // turns
+    turn(direction) {
+        this.dir = (this.dir + direction) % 4
+        // this.debug()
+        this.revealLine(this.pos, GameBoard.add(2, this.dir, this.pos))
+        this.display()
     }
 }
 
 
-// class Moves {
-//     constructor(numSteps) {
-//         this.A = Array(numSteps)
-//     }
-// }
+
+
+let puzzle = document.getElementById("puzzle")
+let moveListEl = document.querySelector("#movesList")
 
 let G = new GameBoard()
+for (let i = 0; i < MOVES.length; i++) moveListEl.innerHTML += `<div class="move" onclick="clickEvent(event)">${MOVES[i]}</div>`
 G.display()
+
+
+function clickEvent(event) {
+    G.executeMoves([event.target.innerHTML])
+}
+// G.revealBoard()
 
 
 
