@@ -1,0 +1,29 @@
+/* Utility classes */
+.flex-container {
+    display: flex;
+}
+.justify-center {
+    justify-content: center;
+    align-items: center;
+}
+.flex-down {
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: 1px solid rgba(0,0,0,0);
+}
+
+a:hover {
+    border: 1px solid black;
+    transform: scale(102%);
+    transition: 0.1s;
+}
+
+:root {
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
