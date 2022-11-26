@@ -1,0 +1,272 @@
+/*  Utility classes */
+:root {
+    --character-offset: -0.15em;
+}
+.flex-container {
+    display: flex;
+}
+.justify-center {
+    justify-content: center;
+    align-items: center;
+}
+.flex-down {
+    flex-direction: column;
+}
+.main {
+    width: 100%;
+}
+
+#game:hover {
+    cursor: default;
+    user-select: none;
+}
+
+#game > * {
+    padding: 1rem;
+    margin: 0.25rem;
+}
+
+table, #movesList, #movesInput {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+#movesList, #movesInput {
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: 1px solid rgba(0,0,0,0);
+}
+
+a:hover {
+    border: 1px solid black;
+    transform: scale(102%);
+    transition: 0.1s;
+}
+
+:root {
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.select-bar {
+    border: 1px solid black;
+    z-index: 100;
+}
+.select-bar > * {
+    padding: 0.5em;
+}
+
+#puzzle tr td {
+    --dimensions: calc(2rem + 2px);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: var(--dimensions);
+    height: var(--dimensions);
+    border: 2px rgba(0, 0, 0, 0.25) dotted;
+}
+
+#movesInput  {
+    font-size: 1.5rem;
+}
+
+.puzzle-data:hover, .canGo:hover, .inputList > div:not(.input):hover, .used-try > .input:hover, .move:hover {
+    transform: scale(102%);
+    transition: 0.1s;
+}
+
+.inputList:not(.used-try) .input:hover {
+    cursor: pointer;
+    transform: scale(98%);
+    transition: 0.1s;
+    filter: grayscale(50%) brightness(0.9);
+}
+
+.inputList:not(.used-try) .input:hover::after {
+    position: absolute;
+    right: 0;
+    content: '❌';
+    animation: fadein-out;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.used-try+.inputList:not(.used-try) {
+    margin-top: 0.125rem;
+    padding-top: 0;
+    border-top: 1px solid black;
+}
+
+.green {
+    filter: hue-rotate(270deg);
+}
+
+.yellow {
+    filter: hue-rotate(180deg);
+}
+
+.gray {
+    filter: grayscale(90%);
+}
+
+.currentInput {
+    transform: scale(102%);
+    transition: 0.1s;
+    animation-name: pulse, grow;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.currentInput:hover {
+    transform: scale(105%);
+    transition: 0.2s;
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.invalidInput {
+    animation-name: errorShake;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+}
+
+
+.move {
+    font-size: 2rem;
+}
+
+.move:hover {
+    cursor: pointer;
+}
+
+.move:active {
+    transform: scale(90%) scale(100%);
+    transition: 0.1s;
+}
+
+#goButton {
+    color: lightgreen;
+    width: 25%;
+    aspect-ratio: 2 / 1;
+    background-color: green;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#goButton:not(.canGo) {
+    filter: grayscale(100%);
+}
+
+.canGo {
+    filter: grayscale(0%);
+    cursor: pointer;
+}
+
+
+.select-bar {
+    border: 1px solid black;
+}
+
+.select-bar > * {
+    padding: 0.5em;
+}
+
+
+
+.charLocation::after {
+    position: absolute;
+    content: '🧙🏼';
+}
+
+.rotate0::after {
+    transform: rotate(0deg);
+}
+.rotate1::after {
+    transform:  rotate(90deg) translate(3.9px, -0.1rem);
+}
+.rotate2::after {
+    transform:  rotate(180deg) translate(0.7px, -0.25rem);
+}
+.rotate3::after {
+    transform:  rotate(270deg) translate(-3.9px, -4.5px);
+}
+
+.gameOver > *:not(.endCard) {
+    animation-name: gameOver;
+    animation-duration: 2s;
+    filter: blur(5px);
+}
+
+.endCard {
+    font-weight: bold;
+    border-radius: 3px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    animation: fade-in 0.5s;
+}
+
+.results {
+    font-weight: normal;
+    margin-top: 1em;
+    z-index: 50;
+    user-select: text;
+    cursor: pointer;
+    padding: 2px;
+    border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.results:hover {
+    border: 1px solid lightgray;
+}
+
+.gameOver::after {
+    cursor: default;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+}
+
+
+@keyframes gameOver {
+    from {filter: blur(0px);}
+    to {filter: blur(5px);}
+}
+
+@keyframes pulse {
+    0% {filter: brightness(100%);}
+    50% {filter: brightness(90%);}
+    100% {filter: brightness(100%);}
+}
+
+@keyframes grow {
+    0% {transform: scale(102%);}
+    50% {transform: scale(105%);}
+    100% {transform: scale(102%);}
+}
+
+@keyframes fadein-out {
+    0% {filter: opacity(20%) grayscale(90%);}
+    50% {filter: opacity(5%) grayscale(90%);}
+    100% {filter: opacity(20%) grayscale(90%);}
+}
+
+@keyframes errorShake {
+    from {transform: translate(1%);}
+    to {transform: translate(-1%);}
+}
+
+@keyframes fade-in {
+    from {filter: opacity(0%);}
+    to {filter: opacity(100%);}
+}
