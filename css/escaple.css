@@ -26,7 +26,9 @@
 */
 #puzzle, #movesList, #movesInput {
     padding: 5px;
-    border: 1px solid black;
+    border: 3px solid black;
+    text-shadow: 2px 2px #3b3d3d;
+    box-shadow: 5px 3px #888888;
 }
 
 #puzzle tr td {
@@ -87,6 +89,8 @@
     cursor: pointer;
     padding: 2px;
     border: 1px solid rgba(255, 255, 255, 0);
+    text-shadow: 2px 2px #3b3d3d
+
 }
 /* indicates it can be clicked */
 .results:hover {
@@ -172,6 +176,9 @@
     border-radius: 5px;
     text-align: center;
     font-size: 2rem;
+    text-shadow: 5px 2px #3b3d3d;
+    box-shadow: 3px 3px #110909;
+
 }
 /* can't be pressed */
 #goButton:not(.canGo) {

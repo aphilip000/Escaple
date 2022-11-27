@@ -1,0 +1,21 @@
+h3{
+    text-align: center;
+    font-weight: 100;
+    font-style: italic;
+    text-decoration: underline;
+    text-shadow: 2.5px 2px #3b3d3d
+}
+
+h4{
+    color: red;
+    text-decoration: underline;
+    text-shadow: 2.5px 2px #3b3d3d
+}
+
+.howtoplay{
+    padding: 1em;
+}
+
+.howtoplay span{
+    font-weight: bold;
+}

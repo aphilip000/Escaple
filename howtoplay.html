@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/howtoplay.css">
+    <link rel="stylesheet" href="./css/util.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>How to Play</title>
+</head>
+<body onload="createTodaysBoard()">
+    <div class="main flex-container flex-down justify-center">
+        <h1>Escaple</h1>
+        <div class="select-bar flex-container">
+            <a href="aboutus.html">About Us</a>
+            <a href="#">How to Play</a>
+            <a href="escaple.html">Play</a>
+            <a href="levelselect.html">Level Select</a>
+        </div>
+        <div class="howtoplay">
+            <h2>Guides and Rules</h2>
+
+            <h3>
+                How to Play:
+            </h3>
+
+            <h4>Tiles: </h4>
+            <ul>
+                <li>⬜ : Floor</li>
+                <li>🟦 : Wall</li>
+                <li>🟩 : Start</li>
+                <li>⬛ : End</li>
+            </ul>
+                    
+                
+            <h4>Moves:</h4> 
+            <ul>
+                <li>🔼 : Move a single tile</li>
+                <li>⏫ : Move as many tiles as possible</li>
+                <li>⬅️ : Turn left</li>
+                <li>➡️ : Turn right</li>
+                <li>🔄 : Turn 180°</li>
+            </ul>
+            <ol>  
+                <li>At the start of the game, the board is completely hidden except for tiles adjacent to or in front of your character.</li>
+                <br>
+                <li>Provide a sequence of moves for the character to do and uncover more of the puzzle.</li>
+                <br>
+                <li>Click one of the moves above the GO button to add them to a sequence.</li>
+                <br>
+                <li>Click a move you inserted to remove it.</li>
+                <br>
+                <li>Once you have filled the sequence with moves, you can click the GO button to try them.</li>
+                <br>
+                <li>After you try a set of moves, those moves will change colour based on if they appear in the solution or not.</li>
+                <ul>
+                    <li>🟩 = Right move, right place</li>
+                    <li>🟨 = Right move, wrong place</li>
+                    <li>⬛ = Wrong move</li>
+                </ul>
+                <br>
+                <li>Win by providing a sequence of moves that will take the character from the start tile to the end tile in one go.</li>
+                <br>
+                <li>You only have 6 tries, so use them wisely.</li>
+            </ol>
+            
+        </div>
+    </div>
+</body>
+</html>

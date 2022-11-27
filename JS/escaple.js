@@ -21,9 +21,9 @@
 // if this were an actual project
 // NOTE: THESE AREN'T ACTUALLY SUPPOSED TO EXIST
 const TILES = [ 
-    ['❎','⬜','⬜','⬜','⬜'],
+    ['🟩','⬜','⬜','⬜','⬜'],
     ['⬜','🟦','⬜','⬜','⬜'],
-    ['⬜','🟦','⚫','⬜','⬜'],
+    ['⬜','🟦','⬛','⬜','⬜'],
     ['⬜','🟦','🟦','🟦','⬜'],
     ['⬜','⬜','⬜','⬜','⬜'] 
 ]
@@ -33,7 +33,7 @@ const DIRECTION = 0
 const MOVES = ['🔼', '⏫', '⬅️', '➡️', '🔄']
 
 // Constants that are actually constant
-const c_Tileset = {BLANK:'⬜', WALL:'🟦', START:'❎', END:'⚫', UNKNOWN:'❔'}
+const c_Tileset = {BLANK:'⬜', WALL:'🟦', START:'🟩', END:'⬛', UNKNOWN:'❔'}
 const c_Character = '🧙🏼'
 const c_ViewDist = 2
 

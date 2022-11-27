@@ -15,12 +15,17 @@ a {
     color: black;
     font-weight: bold;
     border: 1px solid rgba(0,0,0,0);
+    text-shadow: 1px 1px #3b3d3d
+
 }
 
 a:hover {
     border: 1px solid black;
     transform: scale(102%);
     transition: 0.1s;
+    background-color: #1d8132;
+    color:white;
+    text-shadow: 5px 2px #3b3d3d
 }
 
 :root {
@@ -28,10 +33,65 @@ a:hover {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    background-color: #aaaaaa;
+}
+
 .select-bar {
-    border: 1px solid black;
+    border: 2px solid black;
     z-index: 100;
+    box-shadow: 5px 3px #888888;
 }
 .select-bar > * {
     padding: 0.5em;
+}
+
+.main {
+    border: 0.25em solid black;
+    border-radius: 2em;
+    border-style: dashed;
+    background-color: #ffffff;
+    min-height: 97vh;
+    max-width: 98vw;
+    margin: auto;
+    background-color: #ffffff;
+}
+.main p{
+    padding: 1em;
+    text-indent: 10em;
+}
+
+h1{
+    font-family: 'Parisienne', cursive;
+    font-weight: 900;
+    font-size: 2.5em;
+    text-shadow: 5px 2px #00aeff;
+}
+
+h2{
+    text-align: center;
+    font-weight: 100;
+    font-style: italic;
+    text-decoration: underline;
+    text-shadow: 2px 2px #3b3d3d
+}
+
+h3{
+    text-align: center;
+    font-weight: 100;
+    font-style: italic;
+    text-decoration: underline;
+    text-shadow: 2.5px 2px #3b3d3d
+}
+
+h4{
+    color: red;
+    text-decoration: underline;
+    text-shadow: 2.5px 2px #3b3d3d
+}
+
+::-webkit-scrollbar {
+    visibility: hidden;
+    position: absolute;
+    width: 0;
 }
