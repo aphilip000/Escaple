@@ -176,6 +176,7 @@ function revealADJ(i_Pos) {
 // Parameters:
 //      moves: string[], a list of moves for the character to make
 function executeMoves(i_Moves) {
+    document.getElementById("playing").play();
     let move = i_Moves[h_IntervalNum]
     // colour the used moves accordingly
     let element = document.getElementById(`input${v_TryNum}:${h_IntervalNum}`)
@@ -220,6 +221,13 @@ function executeMoves(i_Moves) {
             displayMoves()
         }
     }
+}
+
+// Play music on start of the game
+
+const myTimeout = setTimeout(startAudio, 3000);
+function startAudio() {
+    document.getElementById("start").play();
 }
 
 // Vector2 addition
@@ -444,6 +452,12 @@ function gameOver(victory) {
         }
         output +=           "</div>"
         o_Results += "\n"
+    }
+    document.getElementById("playing").pause();
+
+    const myTimeout = setTimeout(startAudio, 1000);
+    function startAudio() {
+        document.getElementById("finish").play();
     }
     console.log(output)
     game.innerHTML +=       `${output}</div>
